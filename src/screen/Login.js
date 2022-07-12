@@ -1,3 +1,5 @@
+
+
 import {
   View,
   Text, StyleSheet,
@@ -18,11 +20,10 @@ import { faAngleLeft, faL } from '@fortawesome/free-solid-svg-icons'
 import LinearGradient from 'react-native-linear-gradient';
 import Mycontex from '../compo/contex';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import BackButton from '../compo/back';
+
 
 
 const Login = ({ navigation }) => {
-
 
 
   let [ispending, setpending] = useState(false)
@@ -159,92 +160,93 @@ const Login = ({ navigation }) => {
     <ScrollView>
 
       <ImageBackground source={{
-        uri: "https://i.pinimg.com/originals/89/e3/f4/89e3f48f85a29fc958ee70a3f9f943ad.jpg"
+        uri: "https://images.unsplash.com/photo-1569591803741-6246fbc6934c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
       }}  >
 
-        <LinearGradient colors={["#11a12545", "black"]}>
+        <LinearGradient colors={["transparent", "#00000075"]}>
 
           <View style={login.main}>
 
 
+            <View style={login.innermain}>
 
-            <View style={{position:"relative",alignSelf:"flex-start"}}>
-              <BackButton press={handleback} />
-            </View>
-
-            <View style={login.form}>
-
-              <Text style={login.header}>
-                Log in
-              </Text>
-
-              <View style={[login.inputcon, mail.errmsg && {
-                marginBottom: 2
-              }]}>
-                <TextInput
-                  ref={mailRef}
-                  caretHidden={caret}
-                  onBlur={clearselect}
-                  onSubmitEditing={() => {
-                    psdRef.current.focus();
-                    // console.log(psdRef.current)
-                  }}
-
-                  onFocus={() => { setselectedText(1) }}
-                  placeholder='Email'
-                  keyboardType='email-address'
-                  style={[login.input, selectedText === 1 && login.active, mail.errmsg && {
-                    borderColor: "red",
-
-                  }]}
-                  value={mail.text}
-                  onChangeText={(text) => {
-                    validate_Set_Email(text);
-                  }
-                  }
-
-                />
-                {mail.errmsg ? <Text style={login.err}> {mail.errmsg}</Text> : null}
-              </View>
-
-              <View style={[login.inputcon, psd.errmsg && {
-                marginBottom: 2
-              }]}>
-                <TextInput
-                  ref={psdRef}
-                  onFocus={() => { setselectedText(2) }}
-                  placeholder='Password'
-                  style={[login.input, selectedText === 2 && login.active, psd.errmsg && {
-                    borderColor: "red",
-
-                  }]}
-                  value={psd.text}
-                  secureTextEntry
-                  onChangeText={(text) => {
-                    validate_Set_Pass(text);
-                  }
-                  }
-                  onBlur={clearselect}
-                />
-                {psd.errmsg ? <Text style={login.err}>{psd.errmsg}</Text> : null}
-
-
-              </View>
-              <TouchableOpacity onPress={validateForm}>
-                <Text style={[login.submit]}>
-                  {
-                    ispending ? <ActivityIndicator size={28} />
-                      :
-                      'Log in'
-                  }
-                </Text>
+              <TouchableOpacity onPress={handleback} style={login.back}>
+                <FontAwesomeIcon icon={faAngleLeft} size={26} color="white" />
               </TouchableOpacity>
-            </View>
 
+              <View style={login.logo}>
+                <Image
+                  source={require('../kuch/logo.png')} />
+              </View>
+
+              <View style={login.form}>
+                <View style={login.inputcon}>
+                  <TextInput
+                    ref={mailRef}
+                    caretHidden={caret}
+                    onBlur={clearselect}
+                    onSubmitEditing={() => {
+                      psdRef.current.focus();
+                      // console.log(psdRef.current)
+                    }}
+
+                    onFocus={() => { setselectedText(1) }}
+                    placeholder='Email'
+                    keyboardType='email-address'
+                    style={[login.input, selectedText === 1 && login.active, mail.errmsg && {
+                      color: "red",
+                      borderBottomColor: "red"
+                    }]}
+                    value={mail.text}
+                    onChangeText={(text) => {
+                      validate_Set_Email(text);
+                    }
+                    }
+
+                  />
+                  <Text style={login.err}>
+                    {mail.errmsg && <Text > {mail.errmsg}</Text>}
+                  </Text>
+                </View>
+
+                <View style={login.inputcon}>
+                  <TextInput
+                    ref={psdRef}
+                    onFocus={() => { setselectedText(2) }}
+                    placeholder='Password'
+                    style={[login.input, selectedText === 2 && login.active, psd.errmsg && {
+                      color: "red",
+                      borderBottomColor: "red"
+                    }]}
+                    value={psd.text}
+                    secureTextEntry
+                    onChangeText={(text) => {
+                      validate_Set_Pass(text);
+                    }
+                    }
+                    onBlur={clearselect}
+                  />
+                  <Text style={login.err}>
+                    {psd.errmsg && <Text >{psd.errmsg}</Text>}
+                  </Text>
+
+
+                </View>
+                <TouchableOpacity onPress={validateForm}>
+                  <Text style={[login.submit]}>
+                    {
+                      ispending ? <ActivityIndicator size={28} />
+                        :
+                        'Sign in'
+                    }
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
             <View>
               <Text style={login.footer}>
                 Don't have an account?
-                <Text style={{ color: "#11a125" }} onPress={gosignup}> Sign up</Text>
+                <Text style={{ color: "#e39342" }} onPress={gosignup}> Sign up</Text>
               </Text>
             </View>
           </View >
@@ -262,51 +264,48 @@ let login = StyleSheet.create({
     alignItems: "center",
     paddingVertical: 30,
     height: Dimensions.get("window").height * 1,
-    backgroundColor: "#19191947",
-
+    backgroundColor: "#19191947"
   },
-
-
-  inputcon: {
-    marginBottom: 10,
-  },
-
-  header: {
-    marginLeft: 3,
-    fontSize: 27,
-    color: "white",
-    marginBottom: 20,
-    fontWeight: "700"
+  innermain: {
+    height: Dimensions.get("window").height * 0.6,
+    justifyContent: "space-between"
   },
 
   input: {
-    backgroundColor: "#ffffff",
-    borderColor: "white",
-    borderRadius: 7,
-    borderWidth: 1.5,
-    fontSize: 15,
-    paddingHorizontal: 17,
-    paddingVertical: 10,
+    padding: 0,
+    // width:"100%",
+    borderBottomColor: "#2f2c2a2b",
+    borderBottomWidth: 1,
     fontSize: 17,
-    color: "grey"
+    color: "#000000ad",
+  },
+  inputcon: {
+    marginTop: 10,
+    marginHorizontal: 20
   },
   active: {
-    borderColor: "#11a125",
-    borderWidth: 2,
+    color: "#b93840",
+    // borderBottomColor: "#fb459e"
   },
   form: {
-    width: "85%",
+    paddingTop: 30,
+
+    width: Dimensions.get("window").width * 0.87,
+    backgroundColor: "white",
   },
   submit: {
-    backgroundColor: "#11a125",
+    backgroundColor: "#ff8303ad",
     color: "white",
     padding: 15,
-    borderRadius: 7,
-    fontWeight: '700',
-    fontSize: 17,
-    textAlign: 'center'
+    fontSize: 18,
+    textAlign: 'center',
+    marginTop: 12
   },
- 
+  back: {
+    alignSelf: "flex-start",
+    position: "relative",
+    left: -10
+  },
   footer: {
     color: "white",
     fontSize: 16
