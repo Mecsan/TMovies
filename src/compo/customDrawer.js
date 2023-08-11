@@ -89,45 +89,6 @@ const CustomDrawer = (props) => {
                         </View>
 
 
-                        <View style={{
-                            padding: 15,
-                            flexDirection: "column",
-                            borderColor: "grey",
-                            borderWidth: 0.2,
-                            borderRadius: 6
-
-                        }}>
-                            <Text style={{
-                                fontSize: 18, marginBottom: 7,
-                                marginLeft: 10,
-                                color: "white",
-                            }}>Account</Text>
-
-                            <View style={[style.changeitem, {
-                                borderBottomColor: "grey",
-                                borderBottomWidth: 0.3,
-                            }]}>
-                                <View style={style.icon}>
-                                    <FontAwesomeIcon icon={faUserPen} color='#11a125' />
-                                </View>
-                                <Text style={style.changetext}>Change name</Text>
-                                <View style={{ flex: 1, alignItems: "flex-end" }}>
-                                    <FontAwesomeIcon icon={faAngleRight} color='#11a125' />
-                                </View>
-                            </View>
-
-                            <View style={style.changeitem}>
-                                <View style={style.icon}>
-                                    <FontAwesomeIcon icon={faLock} color='#11a125' />
-                                </View>
-                                <Text style={style.changetext}>Change password</Text>
-                                <View style={{ flex: 1, alignItems: "flex-end" }}>
-                                    <FontAwesomeIcon icon={faAngleRight} color='#11a125' />
-                                </View>
-                            </View>
-                        </View>
-
-
                         <TouchableOpacity onPress={handleConfirm} style={style.logout}>
                             <Text style={{
                                 marginRight: 12,
