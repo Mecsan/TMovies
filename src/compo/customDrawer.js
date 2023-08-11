@@ -18,12 +18,14 @@ const CustomDrawer = (props) => {
     // for(i in props){
     //     console.log(i,props[i]);
     // }
-    let { authtoken, setauthtoken } = useContext(Mycontex);
+    let { user, setauthtoken, setuser } = useContext(Mycontex);
 
 
     let logout = async () => {
         try {
             await AsyncStorage.removeItem("@AuthToken");
+            setuser(null);
+            setauthtoken(null);
         } catch (e) {
             console.log(e)
         }
@@ -56,84 +58,91 @@ const CustomDrawer = (props) => {
     }
 
     return (
-        <View style={{
-            backgroundColor: "black", width: "100%", height: "100%",
-            paddingHorizontal: 20
-        }} >
+        <>
+            {
+
+                user ?
+
+                    <View style={{
+                        backgroundColor: "black", width: "100%", height: "100%",
+                        paddingHorizontal: 20
+                    }} >
 
 
-            {/* <DrawerContentScrollView {...props}>
+                        {/* <DrawerContentScrollView {...props}>
                 <DrawerItemList {...props} />
                 <DrawerItem label="gel" />
             </DrawerContentScrollView> */}
 
 
-            <View style={style.header}>
-                <TouchableOpacity onPress={close}>
-                    <FontAwesomeIcon icon={faArrowLeft} size={18} color='white' />
-                </TouchableOpacity>
-                <Text style={{ fontSize: 16, flex: 1, textAlign: "center", color: "white", fontWeight: '600' }}>Profile</Text>
-            </View>
+                        <View style={style.header}>
+                            <TouchableOpacity onPress={close}>
+                                <FontAwesomeIcon icon={faArrowLeft} size={18} color='white' />
+                            </TouchableOpacity>
+                            <Text style={{ fontSize: 16, flex: 1, textAlign: "center", color: "white", fontWeight: '600' }}>Profile</Text>
+                        </View>
 
 
-            <View style={style.info}>
-                <Text style={{ color: "#c0bcbce0" }}>Sanket</Text>
-                <Text style={{ color: "#c0bcbcb8" }}>mecwansanket333@gmail.com</Text>
-            </View>
+                        <View style={style.info}>
+                            <Text style={{ color: "#c0bcbce0" }}>{user.name}</Text>
+                            <Text style={{ color: "#c0bcbcb8" }}>{user.mail}</Text>
+                        </View>
 
 
-            <View style={{
-                padding: 15,
-                flexDirection: "column",
-                borderColor: "grey",
-                borderWidth: 0.2,
-                borderRadius: 6
+                        <View style={{
+                            padding: 15,
+                            flexDirection: "column",
+                            borderColor: "grey",
+                            borderWidth: 0.2,
+                            borderRadius: 6
 
-            }}>
-                <Text style={{
-                    fontSize: 18, marginBottom: 7,
-                    marginLeft: 10,
-                    color: "white",
-                }}>Account</Text>
+                        }}>
+                            <Text style={{
+                                fontSize: 18, marginBottom: 7,
+                                marginLeft: 10,
+                                color: "white",
+                            }}>Account</Text>
 
-                <View style={[style.changeitem, {
-                    borderBottomColor: "grey",
-                    borderBottomWidth: 0.3,
-                }]}>
-                    <View style={style.icon}>
-                        <FontAwesomeIcon icon={faUserPen} color='#11a125' />
+                            <View style={[style.changeitem, {
+                                borderBottomColor: "grey",
+                                borderBottomWidth: 0.3,
+                            }]}>
+                                <View style={style.icon}>
+                                    <FontAwesomeIcon icon={faUserPen} color='#11a125' />
+                                </View>
+                                <Text style={style.changetext}>Change name</Text>
+                                <View style={{ flex: 1, alignItems: "flex-end" }}>
+                                    <FontAwesomeIcon icon={faAngleRight} color='#11a125' />
+                                </View>
+                            </View>
+
+                            <View style={style.changeitem}>
+                                <View style={style.icon}>
+                                    <FontAwesomeIcon icon={faLock} color='#11a125' />
+                                </View>
+                                <Text style={style.changetext}>Change password</Text>
+                                <View style={{ flex: 1, alignItems: "flex-end" }}>
+                                    <FontAwesomeIcon icon={faAngleRight} color='#11a125' />
+                                </View>
+                            </View>
+                        </View>
+
+
+                        <TouchableOpacity onPress={handleConfirm} style={style.logout}>
+                            <Text style={{
+                                marginRight: 12,
+                                color: 'black'
+                            }
+                            }
+                            >Logout</Text>
+                            <FontAwesomeIcon icon={faArrowRightFromBracket} color='#11a125' />
+                        </TouchableOpacity>
+
+
                     </View>
-                    <Text style={style.changetext}>Change name</Text>
-                    <View style={{ flex: 1, alignItems: "flex-end" }}>
-                        <FontAwesomeIcon icon={faAngleRight} color='#11a125' />
-                    </View>
-                </View>
-
-                <View style={style.changeitem}>
-                    <View style={style.icon}>
-                        <FontAwesomeIcon icon={faLock} color='#11a125' />
-                    </View>
-                    <Text style={style.changetext}>Change password</Text>
-                    <View style={{ flex: 1, alignItems: "flex-end" }}>
-                        <FontAwesomeIcon icon={faAngleRight} color='#11a125' />
-                    </View>
-                </View>
-            </View>
-
-
-            <TouchableOpacity onPress={handleConfirm} style={style.logout}>
-                <Text style={{
-                    marginRight: 12,
-                    color: 'black'
-                }
-                }
-                >Logout</Text>
-                <FontAwesomeIcon icon={faArrowRightFromBracket} color='#11a125' />
-            </TouchableOpacity>
-
-
-        </View>
-
+                    : null
+            }
+        </>
     )
 }
 

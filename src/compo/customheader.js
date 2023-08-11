@@ -6,9 +6,8 @@ import Mycontex from './contex'
 
 const Customheader = ({ navigation }) => {
 
-    let { authtoken } = useContext(Mycontex);
+    let { user, authtoken } = useContext(Mycontex);
 
-    let [name, setname] = useState("sanket");
 
     let handlepress = () => {
         if (authtoken) {
@@ -20,7 +19,7 @@ const Customheader = ({ navigation }) => {
 
     let style = StyleSheet.create({
         con: {
-            justifyContent:name?'space-between': "flex-end",
+            justifyContent: user?.name ? 'space-between' : "flex-end",
             alignItems: "center",
             flexDirection: "row",
             paddingHorizontal: 20,
@@ -32,17 +31,13 @@ const Customheader = ({ navigation }) => {
     return (
         <View style={style.con}>
 
-            {name ? <View style={{ flexDirection: "column",paddingRight:20 }}>
-                <Text style={{color:'white',fontSize:13}}>
-                    Hello,<Text style={{color:"green",fontSize:15}}> {name} </Text>
+            {user?.name ? <View style={{ flexDirection: "column", paddingRight: 20 }}>
+                <Text style={{ color: 'white', fontSize: 13 }}>
+                    Hello,<Text style={{ color: "green", fontSize: 15 }}> {user.name} </Text>
                 </Text>
-                <Text style={{color:'grey',fontSize:12}}>
+                <Text style={{ color: 'grey', fontSize: 12 }}>
                     Enjoy your stay here
                 </Text>
-
-
-
-
             </View> : null}
             <TouchableOpacity onPress={handlepress} activeOpacity={1} style={{
                 backgroundColor: "#506059b0",

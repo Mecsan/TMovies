@@ -122,7 +122,7 @@ const Login = ({ navigation }) => {
     }
     if (ismail && ispsd) {
       setpending(true);
-      let res = await fetch("http://192.168.43.184:5000/user/signin", {
+      let res = await fetch("http://192.168.243.184:5000/auth/signin", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -131,10 +131,8 @@ const Login = ({ navigation }) => {
       });
       let data = await res.json();
       if (data.success) {
-        // setauthtoken(formData.mail);
-        resetAll();
         setauthtoken(data.msg);
-        console.log(data);
+        resetAll();
         try {
           await AsyncStorage.setItem("@AuthToken", data.msg);
           navigation.navigate("home")

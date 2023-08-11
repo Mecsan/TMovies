@@ -15,7 +15,7 @@ import BackButton from '../compo/back';
 
 const Signup = ({ navigation }) => {
 
-    let { setauthtoken } = useContext(Mycontex);
+    let { setauthtoken,setuser } = useContext(Mycontex);
     // console.log("dsjds")
 
     useEffect(() => {
@@ -157,9 +157,7 @@ const Signup = ({ navigation }) => {
                 password: psd.text,
             }
 
-            // console.log(formData)
-
-            let res = await fetch("http://192.168.43.184:5000/user/signup", {
+            let res = await fetch("http://192.168.243.184:5000/auth/signup", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -168,6 +166,7 @@ const Signup = ({ navigation }) => {
             });
             let data = await res.json();
             console.log(data)
+
             if (data.success) {
                 resetAll();
                 setauthtoken(data.msg);
@@ -199,7 +198,7 @@ const Signup = ({ navigation }) => {
         navigation.navigate("login")
     }
 
-    let goback = ()=>{
+    let goback = () => {
         navigation.goBack();
     }
 
@@ -208,7 +207,7 @@ const Signup = ({ navigation }) => {
             Keyboard.dismiss()
         }}>
 
-            <BackButton press={goback}/>
+            <BackButton press={goback} />
 
             <ImageBackground
                 style={{ flex: 1 }}
@@ -223,7 +222,7 @@ const Signup = ({ navigation }) => {
                     <View style={{ flex: 1, justifyContent: "center", paddingTop: 50 }}>
                         <Text style={signup.header}>Sign up</Text>
                         <View >
-                            <LinearGradient style={signup.maincon} colors={['#0e0e0e9e','transparent']} >
+                            <LinearGradient style={signup.maincon} colors={['#0e0e0e9e', 'transparent']} >
 
 
 
@@ -318,42 +317,14 @@ const Signup = ({ navigation }) => {
                                         <Text style={signup.submit}>Sign Up</Text>
                                     </TouchableOpacity>
                                 </View>
-                                <View style={{ alignItems: "center" }}>
-                                    <Text style={{
-                                        color: "white",
-                                        fontSize: 15
-                                    }}>or</Text>
 
-                                    <TouchableOpacity style={{
-                                        paddingRight: 80,
-                                        flexDirection: "row",
-                                        width: "100%",
-                                        backgroundColor: "white",
-                                        alignItems: "center",
-                                        justifyContent: "space-around",
-                                        backgroundColor: "#ffffff",
-                                        borderRadius: 7,
-                                        borderWidth: 1.5,
-                                        paddingHorizontal: 17,
-                                        paddingVertical: 10,
-                                        marginTop: 14,
-                                    }}>
-                                        <Image style={{
-                                            width: 25,
-                                            height: 25
-                                        }} source={require("../kuch/google.png")} />
-                                        <Text style={{
-                                            color: "grey",
-                                            fontSize: 15,
-                                            fontWeight: "700"
-                                        }}>Continue with Google</Text>
-                                    </TouchableOpacity>
 
-                                    <Text style={{ fontSize: 15, color: "white", alignSelf: "center", marginTop: 15, marginLeft: 5 }}>Already have an account?
-                                        <Text onPress={gotoLogin} style={{ color: "#11a125" }}> Log in</Text>
-                                    </Text>
 
-                                </View>
+
+                                <Text style={{ fontSize: 15, color: "white", alignSelf: "center", marginTop: 15, marginLeft: 5 }}>Already have an account?
+                                    <Text onPress={gotoLogin} style={{ color: "#11a125" }}> Log in</Text>
+                                </Text>
+
 
                             </LinearGradient>
 

@@ -15,7 +15,7 @@ const Myfav = ({ navigation }) => {
 
     let fetchFavmovies = async () => {
 
-        let url = "http://192.168.43.184:5000/movies/";
+        let url = "http://192.168.243.184:5000/movies/";
         let Api_key = "653fe092082699726c7906a0ec132639";
 
         let res = await fetch(url, {
