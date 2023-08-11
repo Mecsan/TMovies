@@ -35,6 +35,8 @@ const AddTofav = ({ navigation, id }) => {
                     setisfav(data.msg);
                 })
 
+        }else{
+            setisfav(false)
         }
     }, [])
 
