@@ -122,7 +122,7 @@ const Login = ({ navigation }) => {
     }
     if (ismail && ispsd) {
       setpending(true);
-      let res = await fetch("http://192.168.243.184:5000/auth/signin", {
+      let res = await fetch("https://tmovies-v29u.onrender.com/auth/signin", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

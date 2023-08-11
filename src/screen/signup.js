@@ -157,7 +157,7 @@ const Signup = ({ navigation }) => {
                 password: psd.text,
             }
 
-            let res = await fetch("http://192.168.243.184:5000/auth/signup", {
+            let res = await fetch("https://tmovies-v29u.onrender.com/auth/signup", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

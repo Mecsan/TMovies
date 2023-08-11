@@ -22,7 +22,7 @@ const AddTofav = ({ navigation, id }) => {
 
         if (authtoken) {
 
-            let url = "http://192.168.243.184:5000/movies/" + id;
+            let url = "https://tmovies-v29u.onrender.com/movies/" + id;
 
             setisfav(null)
 
@@ -45,7 +45,7 @@ const AddTofav = ({ navigation, id }) => {
 
                 setisfav(null);
 
-                let url = "http://192.168.243.184:5000/movies/" + id;
+                let url = "https://tmovies-v29u.onrender.com/movies/" + id;
                 fetch(url, {
                     headers: {
                         "authtoken": authtoken
@@ -65,7 +65,7 @@ const AddTofav = ({ navigation, id }) => {
 
                 setisfav(null);
 
-                let url = "http://192.168.243.184:5000/movies/";
+                let url = "https://tmovies-v29u.onrender.com/movies/";
                 fetch(url, {
                     method: "POST",
                     headers: {

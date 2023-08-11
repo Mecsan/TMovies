@@ -18,7 +18,7 @@ export default function App() {
       return;
     }
 
-    let res = await fetch("http://192.168.243.184:5000/user/info", {
+    let res = await fetch("https://tmovies-v29u.onrender.com/user/info", {
       headers: {
         "authtoken": authtoken
       },
